@@ -139,6 +139,9 @@ public class Window{
         float endTime;
         float deltaTime = -1.0f;
 
+        // float fixedDeltaTime = 0.01f;
+        float currentTimeLeftToUpdateFixedDeltaTime = 0;
+        float timeBetweenFixedUpdate = 0.01f;
 
         // Run the rendering loop until the user has attempted to close
         // the window or has pressed the ESCAPE key.
@@ -155,6 +158,14 @@ public class Window{
             if (deltaTime >= 0){
                 DebugDraw.Draw();
                 currentScene.update(deltaTime);
+                if (currentTimeLeftToUpdateFixedDeltaTime <= 0)
+                {
+                    currentScene.FixedUpdate(deltaTime);
+                    currentTimeLeftToUpdateFixedDeltaTime = timeBetweenFixedUpdate;
+                }
+                else{
+                    currentTimeLeftToUpdateFixedDeltaTime -= deltaTime;
+                }
             }
             this.frameBuffer.unbind();
             this.imGUILayer.update(deltaTime, currentScene);

@@ -44,6 +44,10 @@ public abstract class Scene {
         }isRunning = true;
     }
 
+    public void FixedUpdate(float fixedDeltaTime){
+
+    };
+
     public void AddGameObjectToScene(GameObject go){
         if (!isRunning){
             gameObjects.add(go);

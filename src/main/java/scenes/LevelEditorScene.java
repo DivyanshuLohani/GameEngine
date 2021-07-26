@@ -6,6 +6,8 @@ import engine.*;
 import imgui.ImGui;
 import imgui.ImVec2;
 import org.joml.Vector2f;
+import org.joml.Vector3f;
+import renderEngine.DebugDraw;
 
 public class LevelEditorScene extends  Scene {
 
@@ -23,7 +25,6 @@ public class LevelEditorScene extends  Scene {
         sprites = AssetPool.getSpriteSheet("assets/images/spritesheets/decorationsAndBlocks.png");
         if (levelLoaded){
             activeGameObject = (gameObjects.get(0));
-            return;
         }
     }
 
@@ -50,7 +51,16 @@ public class LevelEditorScene extends  Scene {
         for (GameObject go : this.gameObjects){
             go.Update(deltaTime);
         }
+        // System.out.println("THis is Update");
         this.renderer.render();
+    }
+
+    @Override
+    public void FixedUpdate(float fixedDeltaTime) {
+        for (GameObject go : this.gameObjects){
+            go.FixedUpdate(fixedDeltaTime);
+        }
+        System.out.println("THis is fixed Update");
     }
 
     @Override

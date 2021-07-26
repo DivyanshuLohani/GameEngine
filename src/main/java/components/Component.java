@@ -18,6 +18,9 @@ public abstract class Component {
     public void Start(){
 
     }
+    public void FixedUpdate(float fixedDeltaTime){
+
+    }
     public void imgui(){
         try {
             Field[] fields = this.getClass().getDeclaredFields();

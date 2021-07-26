@@ -65,6 +65,13 @@ public class GameObject {
             component.Start();
         }
     }
+
+    public void FixedUpdate(float fixedDeltaTime){
+        for (Component component : components){
+            component.FixedUpdate(fixedDeltaTime);
+        }
+    }
+
     public void imgui(){
         for (Component c: components){
             c.imgui();
